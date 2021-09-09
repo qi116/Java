@@ -1,0 +1,19 @@
+package jrJava.multi_threading_7_twoWayNetworking;
+
+import java.io.*;
+import java.util.Scanner;
+
+public class MessageReceiver {
+	private Scanner scanner;
+	public MessageReceiver(InputStream is){
+		scanner = new Scanner(is);
+		
+	}
+	public void receive(){
+		String message;
+		while(scanner.hasNextLine()){
+			message = scanner.nextLine();
+			System.out.println(message);
+		}
+	}
+}

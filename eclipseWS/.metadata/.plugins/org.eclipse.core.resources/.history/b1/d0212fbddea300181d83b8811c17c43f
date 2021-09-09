@@ -1,0 +1,56 @@
+package jrJava.imageManipulation;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class Basic3 {
+
+	public static void main(String[] args) throws IOException{
+		
+		BufferedImage bimg = ImageIO.read(new File("jrJava/imageManipulation/darthVader.png"));
+		BufferedImage empty = new BufferedImage(bimg.getWidth(), bimg.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		int i, j, color, modified, a, r, g, b;
+		for (i = 0; i < bimg.getWidth(); i++) {
+			for (j = 0; j < bimg.getHeight(); j++) {
+				color = bimg.getRGB(i, j);
+				a = getAlpha(color);
+				r = getRed(color) * 5;
+				if(r >255)r = 255;
+				g = getGreen(color);
+				b = getBlue(color);
+				
+				
+				
+				modified = getColor(a,r, g, b);
+				empty.setRGB(i, j, modified);
+				
+				
+			}
+		}
+		ImageIO.write(empty, "png", new File("jrJava/imageManipulation/test2.png"));
+		
+	}
+	private static int getAlpha(int color){
+		return (color>>24)&0xff;
+	}
+	private static int getRed(int color){
+		return (color >> 16)&0xff;
+	}
+	private static int getGreen(int color){
+		return (color >> 8)&0xff;
+
+	}
+	private static int getBlue(int color){
+		return color &0xff;
+
+	}
+	private static int getColor(int a, int r, int g, int b){
+		return (a<<24) | (r<<16) | (g<<8) | (b);
+		
+		
+	}
+
+}

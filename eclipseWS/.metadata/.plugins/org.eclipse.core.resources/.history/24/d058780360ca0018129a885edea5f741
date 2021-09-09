@@ -1,0 +1,41 @@
+package jrJava.abstractType_1;
+
+public class MyArrayList {
+	
+	private String[] elements;
+	private int lastElementIndex;
+	
+	public MyArrayList(){
+		this(10);
+	}
+	public MyArrayList(int size){
+		elements = new String[size];
+		lastElementIndex = -1;
+	}
+	public int size(){
+		
+		return  lastElementIndex+1;
+	}
+	public String get(int index){
+		if(index >= 0 && index <= lastElementIndex)return elements[index];
+		else throw new IndexOutOfBoundsException(); //note, not ArrayIndexOutOfBounds since if you want to switch from array to something else, those who use catch(ArrayIndexOutOfBounds) won't get fked
+	}
+	public void add(String ref){
+		if(lastElementIndex == elements.length-1) {
+			String[] elements2 = new String[elements.length*2];
+			for (int i = 0; i < elements.length; i++) {
+				elements2[i] = elements[i]; // copy 
+			}
+		}
+		elements = elements2;
+		
+		elements[lastElementIndex+1] = ref;
+		lastElementIndex++;
+	}
+	public void add(int index, String ref){
+		elements[index] = ref;
+	}
+	
+	
+
+}

@@ -1,0 +1,20 @@
+package jrJava.abstractType_1;
+
+public class MyArrayList {
+	
+	private String[] elements;
+	private int lastElementIndex;
+	
+	public MyArrayList(){
+		new MyArrayList(10);
+	}
+	public MyArrayList(int size){
+		elements = new String[size];
+		lastElementIndex = -1;
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+
+}

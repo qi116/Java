@@ -1,0 +1,109 @@
+package jrJava.linkedList_3;
+
+
+public class LinkedList<F> {
+	
+	
+
+	public Link<F> first;
+	
+	public LinkedList(){
+		first = null; // redundant
+	}
+	
+	public boolean isEmpty(){ 
+		return first==null;
+	}
+	
+	public int size(){
+		int count = 0;
+		Link<F> current = first;
+		while(current!=null){
+			count++;
+			current = current.next;
+		}
+		return count;
+	}
+	
+	
+	public void insertAtBeginning(F data){
+		Link<F> link = new Link<F>(data);
+		link.next = first;
+		first = link;
+	}
+
+	
+	public F removeFirst(){
+		Link<F> temp = first;
+		if(first!=null) first = first.next;
+		return temp.data;
+	}
+	
+	
+	
+	/*public void insert(int id, double value){
+		Link link = new Link(id, value);
+		
+		Link current = first;
+		Link previous = null;
+		
+		while(current!=null && current.id<id){
+			previous = current;
+			current = current.next;
+		}
+		
+		if(previous==null){
+			if(first!=null) link.next = first;
+			first = link;
+		}
+		else { 
+			previous.next = link;
+			link.next = current;
+		}
+	}*/
+	
+	
+	
+	
+	
+	
+	public void add(F data){
+		Link<F> link = new Link<F>(data);
+		
+		if(first==null){
+			first = link;
+			return;
+		}
+		
+		Link current = first;
+		while(current.next!=null){
+			current = current.next;
+		}
+		current.next = link;
+	}
+	
+	
+	
+	
+	
+	
+	public void printAll(){
+		Link<F> current = first;
+		while(current!=null){
+			System.out.print(current + " ");
+			current = current.next;
+		}
+		System.out.println();
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+

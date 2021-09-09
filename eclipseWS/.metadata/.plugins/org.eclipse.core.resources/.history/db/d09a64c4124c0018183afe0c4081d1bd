@@ -1,0 +1,13 @@
+package jrJava.prep_objects_for_dataStructures_1;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Thing t1 = new Thing(10);
+		String desc = t1.toString();
+		
+		System.out.println(desc);
+		System.out.println(t1);
+	}
+
+}

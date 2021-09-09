@@ -1,0 +1,19 @@
+package jrJava.multi_threading_8_networkChat;
+
+import javax.swing.*;
+
+
+public class GUI {
+	private JFrame frame;
+	private JPanel panel;
+	private JScrollPane displayPane, typingPane;
+	private JTextArea displayArea, typingArea;
+	private JButton send;
+	
+	public GUI(String title){
+		frame = new JFrame();
+		
+	}
+	
+	
+}

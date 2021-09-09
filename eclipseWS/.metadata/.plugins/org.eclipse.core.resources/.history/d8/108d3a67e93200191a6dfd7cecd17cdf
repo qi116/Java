@@ -1,0 +1,329 @@
+package jrJava.tree_DrawableNode;
+
+import java.util.Stack;
+
+public class Tree<E extends Comparable<E>> {
+
+	private Node<E> root;
+	private int treeDepth;
+	private int numOfNodes;
+	
+	private int panelWidth, panelHeight;
+	private int verticalDistance = 100;
+	
+	
+	public Tree() { root = null; } 
+	
+	
+	public Node<E> find(E obj) {
+		if(root==null) return null;
+		
+		Node<E> current = root;
+		
+		while(current.getValue().compareTo(obj)!=0){
+			if(obj.compareTo(current.getValue())<0) current = current.getLeft();
+			else current = current.getRight();
+			
+			if(current==null) return null;
+		}
+		return current;
+	}
+	
+	
+	
+	public void insert(E obj){
+		
+		Node<E> node = new DrawableNode<E>(obj);
+		
+		if(root==null){
+			root = node;
+			return;
+		}
+		
+		Node<E> parent;
+		Node<E> current = root;
+		
+		while(true){
+			
+			parent = current;
+			
+			if(obj.compareTo(current.getValue())<0){
+				current = current.getLeft();
+				if(current==null){
+					parent.setLeft(node);  //parent.leftChild = node;
+					return;
+				}
+			}
+			else {
+				current = current.getRight();
+				if(current==null) {
+					parent.setRight(node);  //parent.rightChild = node;
+					return;
+				}
+			}
+			
+		}
+	}
+	
+	
+	public boolean delete(E obj) {
+		if(root==null) return false;
+		
+		Node<E> current = root;
+		Node<E> parent = root;
+		boolean isLeftChild = false; // is current left child of the parent? 
+		
+		while(current.getValue().compareTo(obj)!=0) {
+			parent = current;
+			
+			if(obj.compareTo(current.getValue())<0) {
+				current = current.getLeft();
+				isLeftChild = true;
+			}
+			else {
+				current = current.getRight();
+				isLeftChild = false;
+			}
+			
+			if(current==null) return false;
+		}
+		
+		// current node is the delete node.
+		// delete the delete node.
+		
+		// Case 1: Delete node has no child.
+		if(current.getLeft()==null &&  current.getRight()==null){
+			if(current==root) root = null;
+			else if(isLeftChild) parent.setLeft(null);
+			else parent.setRight(null);
+		}
+		
+		// Case 2: Delete node has only one child (left).
+		else if(current.getRight()==null){
+			if(current==root) root = current.getLeft();
+		    else if(isLeftChild) parent.setLeft(current.getLeft()); 
+			else parent.setRight(current.getLeft());
+			
+		}
+		
+		// Case 3: Delete node has only one child (right).
+		else if(current.getLeft()==null){
+			if(current==root) root = current.getRight();
+		    else if(isLeftChild) parent.setLeft(current.getRight());
+			else parent.setRight(current.getRight());
+		}
+		
+		// Case 4: Delete node has both children.
+		else {
+			Node<E> successor = getSuccessor(current);
+			
+			if(current==root) root = successor;
+			else if(isLeftChild) parent.setLeft(successor); 
+			else parent.setRight(successor);
+			
+			successor.setLeft(current.getLeft());
+		}
+		
+		return true;
+	}
+	
+	
+	// Go to the right sub-tree and locate the successor.
+	// Take care of the modification that occur within the right sub-tree.
+	private Node<E> getSuccessor(Node<E> deleteNode){
+		
+		Node<E> current = deleteNode.getRight();
+		Node<E> successor = deleteNode.getRight();
+		Node<E> successorParent = deleteNode.getRight();
+		
+		while(current!=null){
+			successorParent = successor;
+			successor = current;
+			current = current.getLeft();
+		}
+		
+		if(successor!=deleteNode.getRight()){
+			successorParent.setLeft(successor.getRight());
+			successor.setRight(deleteNode.getRight());
+		}
+		
+		return successor;
+	}
+	
+	
+	public void printNodesAtLevel(int targetLevel){
+		traverseByLevel(root, 0, targetLevel);
+		System.out.println();
+	}
+	
+	
+	private void traverseByLevel(Node<E> node, int level, int targetLevel) {
+		if(node==null) return;
+		
+		if(level==targetLevel) {
+			System.out.print(node + "  ");
+			return;
+		}
+		
+		traverseByLevel(node.getLeft(), level+1, targetLevel);
+		traverseByLevel(node.getRight(), level+1, targetLevel);
+	}
+	
+	
+	public void printInOrder(){
+		traverse(root, 0, true);
+	}
+	
+	private void traverse(Node<E> node, int level, boolean shouldPrint){
+		
+		if(node==null) return;
+		 
+		numOfNodes++;
+		level++;
+		if(level>treeDepth) treeDepth = level;
+		traverse(node.getLeft(), level, shouldPrint);
+		if(shouldPrint) System.out.println(node);
+		traverse(node.getRight(), level, shouldPrint);
+		level--;
+	}
+	
+	
+	
+	public int getDepth(){
+		treeDepth = 0;
+		traverse(root, 0, false);
+		return treeDepth;
+	}
+	
+	
+	public int size(){
+		numOfNodes = 0;
+		traverse(root, 0, false);
+		return numOfNodes;
+	}
+	
+	
+	public void clear(){
+		root = null;
+	}
+	
+	
+	public Node<E> minimum(){
+		if(root==null) return null;
+		
+		Node<E> current = root;
+		while(current.getLeft()!=null){
+			current = current.getLeft();
+		}
+		return current;
+	}
+	
+	
+	
+	public Node<E> maximum(){
+		if(root==null) return null;
+		
+		Node<E> current = root;
+		while(current.getRight()!=null){
+			current = current.getRight();
+		}
+		return current;
+	}
+	
+	
+	
+	public void traverseTopToBottom(){
+		Stack<Node<E>> main = new Stack<Node<E>>();
+		Stack<Node<E>> children = new Stack<Node<E>>();
+		main.push(root);
+		
+		int ns = 64;
+		
+		boolean isRowEmpty = false;
+		while(!isRowEmpty){
+			
+			for(int i=0; i<ns; i++) System.out.print(' ');
+			
+			isRowEmpty = true;
+			while(!main.isEmpty()) {
+				Node<E> each = main.pop();
+				
+				if(each!=null){
+					System.out.print(each);
+					children.push(each.getLeft());
+					children.push(each.getRight());
+					if(each.getLeft()!=null || each.getRight()!=null) isRowEmpty = false;
+				}
+				else {
+					System.out.print("--");
+					children.push(null);
+					children.push(null);
+				}
+				
+				for(int i=0; i<2*ns-2; i++) System.out.print(' ');
+			}
+			
+			ns /= 2;
+			System.out.println("\n");
+			while(!children.isEmpty()) main.push(children.pop());
+		}
+		
+	}
+	
+	
+	public void displayGraphically(int width, int height){
+		panelWidth = width;
+		panelHeight = height;
+		DrawingPanel panel = new DrawingPanel(width, height);
+		
+		panel.clearDrawableNodes();
+		DrawableNode<E> node = (DrawableNode<E>) root;
+		node.setXY(panelWidth/2, verticalDistance/2);
+
+		// condition all nodes.
+		traverseForDrawing(panel, node, node.getParent(), );
+		
+		panel.repaint();
+	}
+	
+	
+	private void traverseForDrawing(DrawingPanel<E> panel, 
+			                        DrawableNode<E> node, DrawableNode<E> parent,
+			                        boolean isLeftMove, int level){
+		if(node==null) return;
+		// process the node.
+		// set its x, y, and parent.
+		if(level >0){
+			int x,y;
+			if(isLeftMove) x = (int) (parent.getX() - panelWidth/4/Math.pow(2, level-1));
+			else x = (int)(parent.getX()+ panelWidth/4/Math.pow(2, level-1));
+			y = parent.getY() + verticalDistance;
+			node.setXY(x, y);
+			
+		}
+		node.setParent(parent);
+		panel.addDrawableNode(node);
+		traverseForDrawing(panel, (DrawableNode<E>)node.getLeft(), node, true, level+1);
+		traverseForDrawing(panel, (DrawableNode<E>)node.getRight(), node, false, level+1);
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

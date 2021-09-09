@@ -1,0 +1,12 @@
+package jrJava.recursion1;
+
+public class BasicStructure {
+	public static void main(String[] args){
+		m();
+	}
+	public static void m(){
+		System.out.println("dick");
+		m();
+		
+	}
+}

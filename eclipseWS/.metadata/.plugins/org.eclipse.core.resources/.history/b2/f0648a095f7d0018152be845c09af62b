@@ -1,0 +1,14 @@
+package jrJava.recursion2;
+
+public class Palindrome {
+	public static void main(String[] args){
+		System.out.println(isPalindrome("sus", 0, 3));
+	}
+	public static boolean isPalindrome(String text, int begin, int end){
+		
+		if(begin >= end) return true;
+		
+		return isPalindrome(text, begin + 1, end - 1) && text.charAt(begin) == text.charAt(end);
+		
+	}
+}

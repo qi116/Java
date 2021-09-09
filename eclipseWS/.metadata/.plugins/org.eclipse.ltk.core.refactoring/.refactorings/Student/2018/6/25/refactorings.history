@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 3 elements to &apos;Student/jrJava.twoDimenArrayObjects&apos;&#x0D;&#x0A;- Original project: &apos;Student&apos;&#x0D;&#x0A;- Destination element: &apos;Student/jrJava.twoDimenArrayObjects&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     jrJava.sorting_objects.Utility.java&#x0D;&#x0A;     jrJava.sorting_objects.Employee.java&#x0D;&#x0A;     employee.txt" description="Copy elements" destination="/&lt;jrJava.twoDimenArrayObjects" element1="jrJava/sorting_objects/employee.txt" element2="/&lt;jrJava.sorting_objects{Utility.java" element3="/&lt;jrJava.sorting_objects{Employee.java" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1529777668009" units="2" version="1.0"/>
+</session>

@@ -1,0 +1,15 @@
+package tankz.v1;
+import java.awt.*;
+public class Gun {
+	private int x, y; //x and y should be on the middle of the body
+	private int slopX, slopY; //slope?
+	private Color color;
+	
+	public Gun(int x, int y, int slopX, int slopY, Color color){
+		this.x = x;
+		this.y = y;
+		this.slopX = slopX;
+		this.slopY = slopY;
+		this.color = color;
+	}
+}

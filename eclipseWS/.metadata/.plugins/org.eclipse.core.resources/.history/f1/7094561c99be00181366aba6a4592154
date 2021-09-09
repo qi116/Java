@@ -1,0 +1,15 @@
+package jrJava.multi_threading_4;
+
+public class Me {
+
+	public static void main(String[] args) {
+		BankAccount account = new BankAccount();
+		
+		OnlineTeller teller = new OnlineTeller();
+		
+		teller.setBankAccount(account);
+		teller.withdrawAll();
+		teller.withdrawAll();
+	}
+
+}

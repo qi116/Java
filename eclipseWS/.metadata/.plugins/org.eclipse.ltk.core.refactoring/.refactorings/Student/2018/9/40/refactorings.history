@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;jrJava.multi_threading_7_twoWayNetworking&apos; to &apos;Student/jrJava.multi_threading_7_twoWayNetworking&apos;&#x0D;&#x0A;- Original project: &apos;Student&apos;&#x0D;&#x0A;- Destination element: &apos;Student/jrJava.multi_threading_7_twoWayNetworking&apos;&#x0D;&#x0A;- Original element: &apos;Student/jrJava.multi_threading_7_twoWayNetworking&apos;" description="Copy package" destination="/&lt;jrJava.multi_threading_7_twoWayNetworking" element1="/&lt;jrJava.multi_threading_7_twoWayNetworking" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1538330279229" version="1.0"/>
+</session>

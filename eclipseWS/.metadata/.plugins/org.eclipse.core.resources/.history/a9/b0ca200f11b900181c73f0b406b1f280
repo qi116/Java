@@ -1,0 +1,13 @@
+package jrJava.multi_threading_1;
+
+public class SquareSumTask {
+
+	public void  doTask(){
+		double sum = 0;
+		for (int i = 0; i <= 10; i++) {
+			sum+=Math.sqrt(i);
+			System.out.println("SquareSumTask: sum = " + sum);
+		}
+	}
+	
+}

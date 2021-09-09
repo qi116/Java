@@ -1,0 +1,24 @@
+package jrJava.tree_Obj;
+
+public class Node<E> {
+
+	private int id; // sorting key.
+	private E obj;
+	
+	private Node left;
+	private Node right;
+	
+	
+	private Node getLeft(){return left;}
+	private Node getRight(){return right;}
+	private void setLeft(Node node){left = node;}
+	private void setRight(Node node){right = node;}
+	
+	public Node(E obj){
+		this.obj = obj;
+	}
+	
+	public String toString(){
+		return "{" + id + ", " + value + "}";
+	}
+}

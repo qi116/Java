@@ -1,0 +1,207 @@
+package jrJava.tree_Obj;
+
+import java.util.Stack;
+
+public class Tree<E extends Comparable<E>> {
+
+	private Node<E> root;
+	
+	public Tree(){ root = null; }
+	
+	
+	public Node find(E obj){
+		if(root==null) return null;
+		
+		Node<E> current = root;
+		
+		while(obj.compareTo(current.getValue())!= 0 ){
+			if(obj.compareTo(current.getValue())<0) current = current.getLeft();
+			else current = current.getRight();
+			
+			if(current==null) return null;
+		}
+		
+		return current;
+	}
+	
+	
+	public void insert(E obj){
+		Node<E> node = new Node(obj);
+		
+		if(root==null){
+			root = node;
+			return;
+		}
+		
+		Node<E> parent;
+		Node<E> current = root;
+		
+		while(true){
+			parent = current;
+			
+			if(obj.compareTo(current.getValue())<0) {
+				current = current.getLeft();
+				if(current==null){
+					parent.setLeft(node);
+					return;
+				}
+			}
+			else {
+				current = current.getRight();
+				if(current==null){
+					parent.setRight(node);
+					return;
+				}
+			}
+			
+		}
+		
+	}
+	public boolean delete(E obj){
+		if(root == null)return false;//empty tree
+		
+		Node<E> current = root;
+		Node<E> parent = root;
+		boolean left = false;
+		
+		while(obj.compareTo(current.getValue())!=0){
+			parent = current;
+			if(obj.compareTo(current.getValue())<0){
+				current = current.getLeft();
+				left = true;
+			}
+			else{
+				current = current.getRight();
+				left = false;
+			}
+			if(current == null)return false;//key at id doesn't exist
+		}
+		//4 cases
+		//No child
+		if(current.getLeft()== null && current.getRight() == null){
+			//ask parent
+			if(current== root){
+				root = null;
+			}
+			else if(left){
+				parent.setLeft(null);
+			}
+			else{
+				parent.setRight(null);
+			}
+		}
+		//Only left child
+		else if(current.getRight() == null){
+			//ask parent
+			if(current== root){
+				root = current.getLeft();
+			}
+			else if(left){
+				parent.setLeft(current.getRight());
+			}
+			else{
+				parent.setRight(current.getRight());
+			}
+		}
+		//Only right child
+		if(current.getLeft()== null ){
+			//ask parent
+			if(current== root){
+				root = current.getRight();
+			}
+			else if(left){
+				parent.setLeft(current.getLeft());
+			}
+			else{
+				parent.setRight(current.getLeft());
+			}
+		}
+		
+		//Two children
+		return true;
+		
+	}
+	
+	public void printTreeInOrder(){
+		traverse(root);
+	}
+	
+	
+	private void traverse(Node node){
+		if(node==null) return;
+		
+		traverse(node.getLeft());
+		System.out.println(node);
+		traverse(node.getRight());
+	}
+	
+	
+	public void traverseTopToBottom(){
+		
+		Stack<Node> mainStack = new Stack<Node>();
+		Stack<Node> childrenStack;
+		
+		mainStack.push(root);
+		boolean isRowEmpty = false;
+		
+		int ns = 64;
+		
+		while(!isRowEmpty){
+			childrenStack = new Stack<Node>();
+			
+			for(int i=0; i<ns; i++) System.out.print(' '); 
+			
+			isRowEmpty = true;
+			while(!mainStack.isEmpty()){
+				Node each = mainStack.pop();
+				
+				if(each!=null){
+					System.out.print(each.id);
+					childrenStack.push(each.leftChild);
+					childrenStack.push(each.rightChild);
+					if(each.leftChild!=null || each.rightChild!=null) isRowEmpty = false;
+				}
+				else {
+					System.out.print("--");
+					childrenStack.push(null);
+					childrenStack.push(null);
+				}
+				
+				for(int i=0; i<2*ns-2; i++) System.out.print(' ');
+			}
+			
+			System.out.println("\n");
+			ns /= 2;
+			while(!childrenStack.isEmpty()) mainStack.push(childrenStack.pop());
+			
+		}
+		
+	}
+	public Node minimum(){
+		if(root == null)return null; //no minimum
+		Node current = root;
+		while(current.getLeft() != null){
+			current = current.leftChild;
+		}
+		return current;
+	
+	}
+	public Node maximum(){
+		if(root == null) return null;
+		Node current = root;
+		while(current.rightChild != null){
+			current = current.rightChild;
+		}
+		return current;
+	}
+}
+
+
+
+
+
+
+
+
+
+

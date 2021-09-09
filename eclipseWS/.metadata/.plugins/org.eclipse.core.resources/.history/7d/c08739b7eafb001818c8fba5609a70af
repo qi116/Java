@@ -1,0 +1,31 @@
+package jrJava.linkedList_innerClass_1;
+
+
+public class Link<E> {
+
+	public Link<E> next;
+	
+	public E data;
+	
+	
+	
+	public Link(E data){
+		this.data = data;
+	}
+	
+	public String toString(){
+		return "[" + data + "]";
+	}
+	
+	// what more methods?
+}
+
+
+
+
+
+
+
+
+
+

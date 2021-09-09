@@ -1,0 +1,25 @@
+package jrJava.tree_Obj;
+
+public class Node<E extends Comparable> {
+
+	private int id; // sorting key.
+	private E value;
+	
+	private Node leftChild;
+	private Node rightChild;
+	
+	
+	private Node getLeft(){return leftChild;}
+	private Node getRight(){return rightChild;}
+	private void setLeft(Node node){leftChild = node;}
+	private void setRight(Node node){rightChild = node;}
+	
+	public Node(int id, E value){
+		this.id = id;
+		this.value = value;
+	}
+	
+	public String toString(){
+		return "{" + id + ", " + value + "}";
+	}
+}

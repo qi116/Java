@@ -1,0 +1,42 @@
+package jrJava.sorting_objects;
+
+import java.io.*;
+import java.util.Scanner;
+
+public class Utility {
+	public static Employee[] fileToEmployee(String FilePath){
+		Employee[] employees = null;
+
+		Scanner scan;
+		int count = 0;
+
+		String line;
+
+		try{
+			scan = new Scanner(new File(FilePath));
+
+			while(scan.hasNextLine()){
+				line = scan.nextLine();
+				if(line.trim().length() == 0)continue;//check if line is empty
+				count++; 
+			}
+			scan.close();
+			employees = new Employee[count];
+			count = 0;
+
+			scan = new Scanner(new File(FilePath));
+
+			while(scan.hasNextLine()){
+				line = scan.nextLine();
+				if(line.trim().length() == 0)continue;//check if line is empty
+				employees[i] = new Employee();
+			}
+			scan.close();
+		}
+		catch(FileNotFoundException e){
+
+		}
+
+		return employees;
+	}
+}

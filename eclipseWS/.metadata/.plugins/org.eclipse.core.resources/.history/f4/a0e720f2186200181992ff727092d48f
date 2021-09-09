@@ -1,0 +1,23 @@
+package jrJava.sorting_objects;
+
+public class Employee {
+	private String firstName, lastName, title;
+	private int id, hiredYear, height, weight, salary;
+	private char gender;
+	private int dobYY, dobMM, dobDD;
+	
+	public Employee(/*....*/){
+		
+	}
+	public String toString(){
+		return firstName ;
+	}
+	
+	public boolean equals(Object o){
+		return false;
+	}
+	public int hashCode(){
+		return 3;
+	}
+	
+}

@@ -1,0 +1,7 @@
+package jrJava.multi_threading_8_networkChat;
+
+import javax.swing.*;
+
+public class GUI implements JPanel {
+	private JFrame frame;
+}

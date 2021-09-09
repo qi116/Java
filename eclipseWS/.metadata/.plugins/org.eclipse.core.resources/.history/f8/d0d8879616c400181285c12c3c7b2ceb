@@ -1,0 +1,5 @@
+package jrJava.multi_threading_7_twoWayNetworking;
+
+public class MessageReceiver {
+
+}

@@ -1,0 +1,12 @@
+package jrJava.recursion2;
+
+public class Palindrome {
+	public static void main(String[] args){
+		System.out.println("hello".substring(1, "hello".length()));
+	}
+	public static boolean isPalindrome(String text){
+		
+		return isPalindrome(text.substring(1, text.length()));
+		
+	}
+}

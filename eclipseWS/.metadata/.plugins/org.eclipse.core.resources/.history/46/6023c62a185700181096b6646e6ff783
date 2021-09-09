@@ -1,0 +1,102 @@
+package game.thing;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Ball {
+	private int rad, vx, vy, x = 600, y = 100; 
+	private Color color;
+	private int count = 0;
+	public Ball(int rad, int vx, int vy){
+		this.rad = rad;
+		this.vx = vx;
+		this.vy = vy;
+	}
+
+	public int getRad(){
+		return rad;
+	}
+	public void draw(Graphics g){
+		if(count%10 == 0){
+			int r = (int)(Math.random() * 256);
+			int gr = (int)(Math.random() * 256);
+			int b = (int)(Math.random() * 100);
+			color = new Color(r,gr,b);
+		}
+		g.setColor(color);
+
+		g.fillOval(x, y, rad, rad);
+		count++;
+	}
+	public boolean didHitBar(Bar bar){
+		if((y>=bar.y-rad && y<=bar.y+bar.h)  &&(x>=bar.getX()-rad && x<= bar.getX()+bar.getW())){//error
+
+			return true;
+
+		}
+		return false;
+	}
+	public boolean isDead(){
+		if(y>=600){
+			return true;
+
+		}
+		return false;
+	}
+	public boolean didHitBlockY(Block block){
+		//add hitting side logic
+		//below is incorrect (If hits middle, the direction of Y still changes
+		//y<=block.getY()+block.getW()&& y+rad*2>= block.getY()) for entire block
+		if((x<=block.getX()+block.getL() && x+rad*2>=block.getX()) && (y<=block.getY() + block.thickness&& y+rad*2>= block.getY()) )return true;//top of block
+		if((x<=block.getX()+block.getL() && x+rad*2>=block.getX()) && (y<=block.getY()+block.getW()&& y+rad*2>= block.getY()+block.getW()-block.thickness) )return true;//bottom of block
+		return false;
+	}
+	public boolean didHitBlockX(Block block){//fix this
+		if((x<=block.getX()+block.thickness && x+rad*2>=block.getX()-block.thickness) && (y<=block.getY() + block.getW()&& y+rad*2>= block.getY()) )return true;//top of block
+		if((x<=block.getX()+block.getL()+1 && x+rad*2>=block.getX()+block.getL()-block.thickness) && (y<=block.getY() + block.getW()&& y+rad*2>= block.getY()) )return true;//top of block
+		return false;
+	}
+	public boolean didHitTop(){
+		if(y<=0)return true;
+		return false;
+	}
+	public boolean didHitSide(){
+		if(x>=800||x+2*rad<=0)return true;
+		return false;
+	}
+	public void move(){
+		if(didHitBar(Coordinator.bar)){
+			if(vy>0)vy = -vy;
+
+		}
+		for (int i = 0; i < Coordinator.manager.blocks.size(); i++) {
+			if(Coordinator.manager.blocks.get(i)!=null&&didHitBlockY(Coordinator.manager.blocks.get(i))){
+				Coordinator.manager.blocks.set(i,null);	
+				vy = -vy;
+				if(Coordinator.manager.blocks.get(i)!=null&&didHitBlockX(Coordinator.manager.blocks.get(i))){
+					Coordinator.manager.blocks.set(i,null);
+					vx = -vx;
+				}
+				break;
+			}
+			else if(Coordinator.manager.blocks.get(i)!=null&&didHitBlockX(Coordinator.manager.blocks.get(i))){
+				Coordinator.manager.blocks.set(i,null);	
+				vx = -vx;
+				break;
+			}
+		}
+
+
+		if(didHitTop()){
+			vy = - vy;
+		}
+		if(didHitSide())vx = -vx;
+		x+= vx;
+		y+= vy;
+	}
+
+	public void x(){
+		vx = -vx;
+	}
+	public void y(){vy = -vy;}
+}

@@ -1,0 +1,50 @@
+package jrJava.queue_1;
+
+public class Queue {
+
+	private char[] values;
+	private int front;
+	
+	public Queue(int size){
+		values = new char[size];
+		front = -1;
+	}
+	public void printAll(){//delete later
+		for (int i = 0; i <= front; i++) {
+			System.out.print(values[i]);
+		}
+		System.out.println();
+	}
+	
+	public void enqueue(char value){
+		if(front==values.length-1) throw new IndexOutOfBoundsException();
+		values[++front] = value;
+	}
+	
+	public char dequeue(){//shift down after removing
+		if(front <0)throw new IndexOutOfBoundsException();
+		char save = values[0];
+		for(int i = 1; i<=front; i++){
+			values[i-1] = values[i];
+		}
+		
+		front--;
+		return save;
+	}
+	
+	public char peek(){
+		if(front==-1) throw new IndexOutOfBoundsException();
+		return values[0];
+	}
+	
+	public boolean isEmpty(){
+		return front==-1;
+	}
+}
+
+
+
+
+
+
+

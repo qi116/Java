@@ -1,0 +1,25 @@
+package jrJava.linkedList_2;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		int[] aaa = {35, 15, 17, 88, 25};
+		
+		LinkedList list = new LinkedList();
+		list.insert(35, 3.5);
+		list.insert(15, 1.5);
+		list.insert(17, 1.7);
+		list.insert(88, 8.8);
+		list.insert(25, 2.5);
+		
+		list.printAll();
+		
+		
+		for(int i = 0; i< list.size(); i++){
+			list.get(i);
+		}
+		
+	}
+
+}

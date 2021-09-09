@@ -1,0 +1,228 @@
+package jrJava.tree_Obj;
+
+import java.util.Stack;
+
+import jrJava.tree_DrawableNode.Node;
+
+public class Tree<E extends Comparable<E>> {
+
+	private Node<E> root;
+	
+	public Tree(){ root = null; }
+	
+	
+	public Node find(E obj){
+		if(root==null) return null;
+		
+		Node<E> current = root;
+		
+		while(obj.compareTo(current.getValue())!= 0 ){
+			if(obj.compareTo(current.getValue())<0) current = current.getLeft();
+			else current = current.getRight();
+			
+			if(current==null) return null;
+		}
+		
+		return current;
+	}
+	
+	
+	public void insert(E obj){
+		Node<E> node = new Node(obj);
+		
+		if(root==null){
+			root = node;
+			return;
+		}
+		
+		Node<E> parent;
+		Node<E> current = root;
+		
+		while(true){
+			parent = current;
+			
+			if(obj.compareTo(current.getValue())<0) {
+				current = current.getLeft();
+				if(current==null){
+					parent.setLeft(node);
+					return;
+				}
+			}
+			else {
+				current = current.getRight();
+				if(current==null){
+					parent.setRight(node);
+					return;
+				}
+			}
+			
+		}
+		
+	}
+	
+	public void printTreeInOrder(){
+		traverse(root);
+	}
+	
+	
+	private void traverse(Node node){
+		if(node==null) return;
+		
+		traverse(node.getLeft());
+		System.out.println(node);
+		traverse(node.getRight());
+	}
+	
+	
+	public void traverseTopToBottom(){
+		
+		Stack<Node> mainStack = new Stack<Node>();
+		Stack<Node> childrenStack;
+		
+		mainStack.push(root);
+		boolean isRowEmpty = false;
+		
+		int ns = 64;
+		
+		while(!isRowEmpty){
+			childrenStack = new Stack<Node>();
+			
+			for(int i=0; i<ns; i++) System.out.print(' '); 
+			
+			isRowEmpty = true;
+			while(!mainStack.isEmpty()){
+				Node each = mainStack.pop();
+				
+				if(each!=null){
+					System.out.print(each.id);
+					childrenStack.push(each.getLeft());
+					childrenStack.push(each.rightChild);
+					if(each.leftChild!=null || each.rightChild!=null) isRowEmpty = false;
+				}
+				else {
+					System.out.print("--");
+					childrenStack.push(null);
+					childrenStack.push(null);
+				}
+				
+				for(int i=0; i<2*ns-2; i++) System.out.print(' ');
+			}
+			
+			System.out.println("\n");
+			ns /= 2;
+			while(!childrenStack.isEmpty()) mainStack.push(childrenStack.pop());
+			
+		}
+		
+	}
+	public Node minimum(){
+		if(root == null)return null; //no minimum
+		Node current = root;
+		while(current.getLeft() != null){
+			current = current.getLeft();
+		}
+		return current;
+	
+	}
+	public Node maximum(){
+		if(root == null) return null;
+		Node current = root;
+		while(current.getRight() != null){
+			current = current.getRight();
+		}
+		return current;
+	}
+	public boolean delete(E obj) {
+		if(root==null) return false;
+		
+		Node<E> current = root;
+		Node<E> parent = root;
+		boolean isLeftChild = false; // is current left child of the parent? 
+		
+		while(current.getValue().compareTo(obj)!=0) {
+			parent = current;
+			
+			if(obj.compareTo(current.getValue())<0) {
+				current = current.getLeft();
+				isLeftChild = true;
+			}
+			else {
+				current = current.getRight();
+				isLeftChild = false;
+			}
+			
+			if(current==null) return false;
+		}
+		public boolean delete(E obj) {
+			if(root==null) return false;
+			
+			Node<E> current = root;
+			Node<E> parent = root;
+			boolean isLeftChild = false; // is current left child of the parent? 
+			
+			while(current.getValue().compareTo(obj)!=0) {
+				parent = current;
+				
+				if(obj.compareTo(current.getValue())<0) {
+					current = current.getLeft();
+					isLeftChild = true;
+				}
+				else {
+					current = current.getRight();
+					isLeftChild = false;
+				}
+				
+				if(current==null) return false;
+			}
+			
+			// current node is the delete node.
+			// delete the delete node.
+			
+			// Case 1: Delete node has no child.
+			if(current.getLeft()==null &&  current.getRight()==null){
+				if(current==root) root = null;
+				else if(isLeftChild) parent.setLeft(null);
+				else parent.setRight(null);
+			}
+			
+			// Case 2: Delete node has only one child (left).
+			else if(current.getRight()==null){
+				if(current==root) root = current.getLeft();
+			    else if(isLeftChild) parent.setLeft(current.getLeft()); 
+				else parent.setRight(current.getLeft());
+				
+			}
+			
+			// Case 3: Delete node has only one child (right).
+			else if(current.getLeft()==null){
+				if(current==root) root = current.getRight();
+			    else if(isLeftChild) parent.setLeft(current.getRight());
+				else parent.setRight(current.getRight());
+			}
+			
+			// Case 4: Delete node has both children.
+			else {
+				Node<E> successor = getSuccessor(current);
+				
+				if(current==root) root = successor;
+				else if(isLeftChild) parent.setLeft(successor); 
+				else parent.setRight(successor);
+				
+				successor.setLeft(current.getLeft());
+			}
+			
+			return true;
+		}
+		
+		
+}
+
+
+
+
+
+
+
+
+
+

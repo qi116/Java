@@ -1,0 +1,21 @@
+package jrJava.recursion1;
+
+public class CallStack {
+	private static int aaa;
+	public static void main(String[] args){
+		int a, b;
+		if(args.length>3){
+			int c;
+			m();
+			int d;
+		}
+		int d;
+		m();
+		int e;
+		
+	}
+	public static void m(){
+		
+	}
+	
+}

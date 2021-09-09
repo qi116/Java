@@ -1,0 +1,11 @@
+package jrJava.twoDimenArray;
+
+public class Practice2 {
+
+	public static void main(String[] args) {
+
+		//2D array initialization
+		
+	}
+
+}

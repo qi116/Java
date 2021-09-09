@@ -1,0 +1,22 @@
+package jrJava.stack_1;
+
+public class Stack {
+	private char[] array;
+	private int index;
+	
+	public Stack(char[] array){
+		this.array = array;
+		index = array.length-1;
+	}
+	
+	public void push(char ch){
+		array[index] = ch;
+		index--;
+	}
+	
+	public char pop(){
+		return array[++index];
+		
+	
+	}
+}

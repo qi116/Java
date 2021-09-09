@@ -1,0 +1,18 @@
+package jrJava.exceptionHandling;
+
+public class Practice1 {
+
+	public static void main(String[] args) {
+		System.out.println("Point 1");
+		
+		doWork();
+		
+		System.out.println("Point 4");
+	}
+	
+	public static void doWork() {
+		System.out.println("Point 2");
+		
+		System.out.println("Point 3");
+	}
+}

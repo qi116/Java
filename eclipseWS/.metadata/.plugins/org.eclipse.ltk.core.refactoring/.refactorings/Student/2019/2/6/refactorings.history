@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;jrJava.tree_2&apos; to &apos;Student/jrJava.tree_2&apos;&#x0D;&#x0A;- Original project: &apos;Student&apos;&#x0D;&#x0A;- Destination element: &apos;Student/jrJava.tree_2&apos;&#x0D;&#x0A;- Original element: &apos;Student/jrJava.tree_2&apos;" description="Copy package" destination="/&lt;jrJava.tree_2" element1="/&lt;jrJava.tree_2" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1549219366161" version="1.0"/>
+</session>

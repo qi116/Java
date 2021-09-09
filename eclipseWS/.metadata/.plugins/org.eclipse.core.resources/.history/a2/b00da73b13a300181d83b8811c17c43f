@@ -1,0 +1,20 @@
+package jrJava.imageManipulation;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
+public class Basic1 {
+	public static void main(String[] args){
+		
+		BufferedImage bimg = new BufferedImage(600, 400, BufferedImage.TYPE_INT_ARGB);
+		
+		ImageIO.write(bimg, "png", new File("jrJava/imageManipulation/test1.png"));
+		
+		
+		
+		
+		
+	}
+}

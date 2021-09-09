@@ -1,0 +1,57 @@
+package jrJava.sorting_objects;
+
+import java.io.*;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class Utility {
+	public static Employee[] fileToEmployee(String FilePath){
+		Employee[] employees = null;
+
+		Scanner scan;
+		int count = 0;
+
+		String line;
+
+		try{
+			scan = new Scanner(new File(FilePath));
+
+			while(scan.hasNextLine()){
+				line = scan.nextLine();
+				if(line.trim().length() == 0)continue;//check if line is empty
+				count++; 
+			}
+			scan.close();
+			employees = new Employee[count];
+			count = 0;
+
+			scan = new Scanner(new File(FilePath));
+
+			while(scan.hasNextLine()){
+				line = scan.nextLine();
+				if(line.trim().length() == 0)continue;//check if line is empty
+				
+				StringTokenizer st = new StringTokenizer(line, " ");
+				String firstName = st.nextToken();
+				String lastName = st.nextToken();
+				int id = Integer.parseInt(st.nextToken());
+				String title = st.nextToken();
+				int hiredYear = Integer.parseInt(st.nextToken());
+				int salary = Integer.parseInt(st.nextToken());
+				int dobYY = Integer.parseInt(st.nextToken());
+				int dobMM = Integer.parseInt(st.nextToken());
+				int dobDD = Integer.parseInt(st.nextToken());
+				char gender = st.nextToken().charAt(0);
+				
+				employees[count] = new Employee();
+				
+			}
+			scan.close();
+		}
+		catch(FileNotFoundException e){
+
+		}
+
+		return employees;
+	}
+}

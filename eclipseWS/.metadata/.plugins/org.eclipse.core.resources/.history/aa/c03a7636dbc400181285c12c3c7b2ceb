@@ -1,0 +1,24 @@
+package jrJava.multi_threading_8_networkChat;
+
+import javax.swing.*;
+
+
+public class GUI {
+	private JFrame frame;
+	private JPanel panel;
+	private JScrollPane displayPane, typingPane;
+	private JTextArea displayArea, typingArea;
+	private JButton send;
+	
+	public GUI(String title){
+		frame = new JFrame(title);
+		if(title.startsWith("S"))frame.setBounds(500, 0, 380, 550);
+		else frame.setBounds(50, 0, 380, 550);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		panel = new JPanel();
+		frame.getContentPane().add(panel);
+	}
+	
+	
+}

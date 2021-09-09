@@ -1,0 +1,17 @@
+package jrJava.imageManipulation;
+
+import java.awt.image.BufferedImage;
+
+public class Basic1 {
+	public static void main(String[] args){
+		
+		BufferedImage bimg = new BufferedImage(600, 400, BufferedImage.TYPE_INT_ARGB);
+		
+		
+		
+		
+		
+		
+		
+	}
+}

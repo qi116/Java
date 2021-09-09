@@ -1,0 +1,13 @@
+package jrJava.multi_threading_4;
+
+public class OnlineTeller {
+	private BankAccount account;
+	
+	private void setBankAccount(BankAccount account){
+		this.account = account;
+	}
+	private void withdrawAll(){
+		double amount = account.getBalance();
+		
+	}
+}

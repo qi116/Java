@@ -1,0 +1,7 @@
+package jrJava.sorting_objects;
+
+public class Employee {
+	private String firstName, lastName, title;
+	private int id, year, height, weight;
+	private char gender;
+}

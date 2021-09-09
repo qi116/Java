@@ -1,0 +1,16 @@
+package jrJava.multi_threading_3;
+
+public class Calculator {
+	private int sum = 0;
+
+	
+	public synchronized void calculateSum(){
+		for (int i = 0; i <= 10; i++) {
+			sum+= i;
+			System.out.println("Sum = " + sum);
+		}
+		sum = 0;
+	}
+	
+	
+}

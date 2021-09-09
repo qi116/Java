@@ -1,0 +1,26 @@
+package jrJava.abstractType_1;
+
+public class MyArrayList {
+	
+	private String[] elements;
+	private int lastElementIndex;
+	
+	public MyArrayList(){
+		this(10);
+	}
+	public MyArrayList(int size){
+		elements = new String[size];
+		lastElementIndex = -1;
+	}
+	public int size(){
+		
+		return  lastElementIndex+1;
+	}
+	public String get(int index){
+		if(index >= 0 && index <= lastElementIndex)return elements[index];
+		else throw new ArrayIndexOutOfBounds();
+	}
+	
+	
+
+}

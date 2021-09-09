@@ -1,0 +1,15 @@
+package jrJava.recursion2;
+
+public class Count5 {
+	public static void main(String[] args){
+		System.out.println(count5(545));
+	}
+	public static int count5(int number){
+		int num;
+		
+		if(number%10 == 5)num = 1;
+		else num =0;
+		if(number<10)return num;
+		return count5(number/10) + num;
+	}
+}

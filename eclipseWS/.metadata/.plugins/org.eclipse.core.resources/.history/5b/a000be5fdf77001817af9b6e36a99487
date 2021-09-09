@@ -1,0 +1,17 @@
+package jrJava.recursion1;
+
+public class BasicStructure {
+	private static int lvl;
+	public static void main(String[] args){
+		m();
+	}
+	public static void m(){
+		lvl++;
+		System.out.println("dick" + lvl);
+		if(lvl>=10)return;
+		m();
+		lvl--
+		System.out.println("more dick" + lvl);
+		
+	}
+}

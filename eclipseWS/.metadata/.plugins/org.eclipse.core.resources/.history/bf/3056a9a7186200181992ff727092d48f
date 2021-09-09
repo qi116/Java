@@ -1,0 +1,12 @@
+package jrJava.sorting_objects;
+
+public class ObjectSorter {
+
+	public static void main(String[] args) {
+		Employee[] employees = Utility.fileToEmployee("jrJava/sorting_objects/employee.txt");
+		for (int i = 0; i < employees.length; i++) {
+			System.out.println(employees[i].toString());
+		}
+	}
+
+}
